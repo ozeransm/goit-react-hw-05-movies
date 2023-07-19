@@ -10,7 +10,7 @@ export const MoviesItem = ()=>{
             // console.log(data)
             setState(data);
         })
-    },[])
+    },[movieId])
 
     useEffect(()=>{
         data();
