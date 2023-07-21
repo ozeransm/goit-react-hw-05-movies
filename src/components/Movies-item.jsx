@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom"
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { GetData } from "./Api";
 export const MoviesItem = ()=>{
     const { movieId } = useParams();
-    console.log(movieId);
+    
     const [state, setState] = useState(null);
     const data = useCallback(()=>{
         GetData(`movie/${movieId}`).then(({data})=>{

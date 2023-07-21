@@ -5,9 +5,9 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 
 
-export const GetData = (query='')=>
+export const GetData = (endpoint='',query='')=>
 {
-    console.log(`${BASE_URL}${query}?api_key=${API_KEY}`);
-    return axios.get(`${BASE_URL}${query}?api_key=${API_KEY}`);
+    // console.log(`${BASE_URL}${endpoint}?api_key=${API_KEY}${query==='' ? query : `&query=${query}`}`);
+    return axios.get(`${BASE_URL}${endpoint}?api_key=${API_KEY}${query==='' ? query : `&query=${query}`}`);
 }
 

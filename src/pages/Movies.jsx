@@ -7,15 +7,16 @@ export const Movies = ()=>{
     const [inpVal, setInpVal] = useSearchParams();
     const [state, setState] = useState(null)
     const data = ()=>{
-        GetData('trending/all/day').then(({data})=>{
-            console.log(data.results)
+        GetData('search/movie', inpVal.get('search_val')).then(({data})=>{
+            // console.log(data.results)
             setState(data.results);
         })
     }
     
 
     const handlerBtn = ()=>{
-        console.log("kjdfvnskljdflkgdfkl");
+        // console.log("kjdfvnskljdflkgdfkl");
+        // console.log(inpVal);
         data();
     }
 
