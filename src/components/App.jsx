@@ -2,10 +2,13 @@ import { Home } from "pages/Home";
 import { Layout } from "pages/Layout";
 import { Movies } from "pages/Movies";
 import {  NavLink, Route, Routes } from "react-router-dom"
-import { MoviesItem } from "./Movies-item";
-import { useRef } from "react";
+
+import { Cast } from "./Cast";
+import { Reviews } from "./Reviews";
+import { MovieDetails } from "components/MovieDetails";
+
 export const App = () => {
-  const firstLoadSearch = useRef(true);
+  
   return (
     <div>
       <nav>
@@ -16,9 +19,12 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout/>}> 
           <Route index element={<Home/>}/>
-          <Route path="/:movieId" element={<MoviesItem/>}/>
-          <Route path="movies" element={<Movies firstLoadSearch={firstLoadSearch}/>}/>
-          <Route path="movies/:movieId" element={<MoviesItem/>}/>
+          <Route path="/:movieId" element={<MovieDetails/>}/>
+          <Route path="movies" element={<Movies />}/>
+          <Route path="movies/:movieId" element={<MovieDetails/>}>
+            <Route path="cast" element={<Cast/>}/>
+            <Route path="reviews" element={<Reviews/>}/>
+          </Route>   
             
         </Route>
 

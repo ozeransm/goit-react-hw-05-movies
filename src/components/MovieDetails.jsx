@@ -1,9 +1,9 @@
-import { Link, useLocation, useParams } from "react-router-dom"
-import { useState, useEffect, useCallback } from "react";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom"
+import { useState, useEffect, useCallback, useRef } from "react";
 import { GetData } from "./Api";
-export const MoviesItem = ()=>{
+export const MovieDetails = ()=>{
     const { movieId } = useParams();
-    const location = useLocation();
+    const locationRef = useRef(useLocation());
     
     const [state, setState] = useState(null);
     const data = useCallback(()=>{
@@ -14,15 +14,13 @@ export const MoviesItem = ()=>{
     },[movieId])
 
     useEffect(()=>{
-        data();
+       data();
     },[data])
     const imgPath = state ?  `https://image.tmdb.org/t/p/w500${state.poster_path}` : '';
     
     return(
         <>
-        {/* {`https://image.tmdb.org/t/p/w500${state?.poster_path}`} */}
-        {/* poster_path backdrop_path*/}
-            <Link to={location.state.from}>Back</Link>
+            <Link to={locationRef.current.state.from}>Back</Link>
             <img src={imgPath} alt={state?.title} width="400"/>
             <h3>{state?.title}</h3>
             <p>User Score</p>
@@ -30,7 +28,9 @@ export const MoviesItem = ()=>{
             <span>{state?.overview}</span>
             <p>Genres:</p>
             <span>{state?.genres.map(({name})=>name).join(' ')}</span>
-            
+            <Link to={`/movies/${movieId}/cast`}>Cast</Link>
+            <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+            <Outlet/>
         </>
     )
 }
