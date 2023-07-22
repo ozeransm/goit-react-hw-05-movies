@@ -1,12 +1,17 @@
 import { GetData } from "components/Api"
 import { ListFilms } from "components/ListFilms";
 import { useEffect, useState } from "react"
-export const Home = ()=>{
+const Home = ()=>{
     const [state, setState] = useState(null);
     const data = ()=>{
-        GetData('trending/all/day').then(({data})=>{
-            setState(data.results);
-        })
+        try{
+            GetData('trending/all/day').then(({data})=>{
+                setState(data.results);
+            })
+        }catch(error){
+            console.log(error);
+        }
+        
     }
 
     useEffect(()=>{
@@ -15,10 +20,11 @@ export const Home = ()=>{
     },[])
     return(
         <>
-            <h2>Home</h2>
+            <h2>Trending today</h2>
             <ListFilms data={state} from={{from: '/'}}/>
                         
         </>    
         
     )
 }
+export default Home;

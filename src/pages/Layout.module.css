@@ -1,0 +1,10 @@
+.nav{
+    display: flex;
+    border-bottom: solid 1px grey;
+    margin-bottom: 15px;
+  }
+  .navLink{
+    padding-left: 20px;
+    color:black;
+  }
+  

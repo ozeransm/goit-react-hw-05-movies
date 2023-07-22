@@ -1,14 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { GetData } from "components/Api";
 import { useParams } from "react-router-dom";
-export const Cast = ()=>{
+import noImg from "../img/no-image.jpg";
+import { nanoid } from 'nanoid';
+const Cast = ()=>{
     const { movieId } = useParams();
     const [state, setState] = useState();
     const data = useCallback(()=>{
-        GetData(`movie/${movieId}/credits`).then(({data})=>{
-            // console.log(data)
-            setState(data);
-        })
+        try{
+            GetData(`movie/${movieId}/credits`).then(({data})=>{
+                // console.log(data)
+                setState(data);
+            })
+        }catch(error){
+            console.log(error);
+        }
+        
     },[movieId]);
 
     useEffect(()=>{
@@ -17,19 +24,22 @@ export const Cast = ()=>{
     
     return(
         <>
-            <h2>Cast</h2>
+            {!state?.cast.length && <h3>no result</h3>}
             <ul>
             {
                 state?.cast.map(({character, name, profile_path, id})=>
-                    <li key={id}>
-                        <img src={state ?  `https://image.tmdb.org/t/p/w500${profile_path}` : ''} alt={name} width="200"/>
-                        <p>{name}</p>
-                        <p>{character}</p>
+                    <li key={nanoid()}>
+                        <img src={ !profile_path ? noImg :`https://image.tmdb.org/t/p/w500${profile_path}`} alt={name} width="200"/>
+                        <p>{name || 'no name'}</p>
+                        <p>{character || 'no character'}</p>
                         </li>)
+                
             }
+
             </ul>
         </>
         
 
     )
 }
+export default Cast;

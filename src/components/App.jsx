@@ -1,21 +1,17 @@
-import { Home } from "pages/Home";
+import { lazy } from "react";
+import {  Route, Routes } from "react-router-dom"
 import { Layout } from "pages/Layout";
-import { Movies } from "pages/Movies";
-import {  NavLink, Route, Routes } from "react-router-dom"
 
-import { Cast } from "./Cast";
-import { Reviews } from "./Reviews";
-import { MovieDetails } from "components/MovieDetails";
+const Home = lazy(()=>import("../pages/Home"));
+const Movies = lazy(()=>import("../pages/Movies"));
+const Cast = lazy(()=>import("../components/Cast"));
+const Reviews = lazy(()=>import("../components/Reviews"));
+const MovieDetails = lazy(()=>import("../components/MovieDetails"));
 
 export const App = () => {
   
   return (
-    <div>
-      <nav>
-        <NavLink to="/"><h2>Home</h2></NavLink>
-        <NavLink to="/movies"><h2>Movies</h2></NavLink>
-      </nav>
-      
+    <div className='container'>
       <Routes>
         <Route path="/" element={<Layout/>}> 
           <Route index element={<Home/>}/>
@@ -25,7 +21,6 @@ export const App = () => {
             <Route path="cast" element={<Cast/>}/>
             <Route path="reviews" element={<Reviews/>}/>
           </Route>   
-            
         </Route>
 
       </Routes>

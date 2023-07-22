@@ -1,0 +1,22 @@
+img{
+    display: block;
+}
+.link{
+    display: block;
+    width: 75px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: solid 1px grey;
+    border-radius: 4px;
+}
+.movdet{
+    display: flex;
+    gap: 15px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px grey;
+}
+.list{
+    padding-bottom: 20px;
+    border-bottom: solid 1px grey;
+}
