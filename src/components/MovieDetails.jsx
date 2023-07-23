@@ -45,8 +45,8 @@ const MovieDetails = ()=>{
             </div>
             <h4>Additional informaton</h4>
             <ul className={css.list}>
-                <li><Link to={`/movies/${movieId}/cast`}>Cast</Link></li>
-                <li><Link to={`/movies/${movieId}/reviews`}>Reviews</Link></li>
+                <li><Link to={`/search/${movieId}/cast`}>Cast</Link></li>
+                <li><Link to={`/search/${movieId}/reviews`}>Reviews</Link></li>
             </ul>
             <Outlet/>
         </>
